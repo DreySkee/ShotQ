@@ -27,7 +27,7 @@ struct VaultMenuView: View {
             Image(systemName: "camera.viewfinder")
                 .font(.title3)
             VStack(alignment: .leading, spacing: 1) {
-                Text("ShotQueue").font(.headline)
+                Text("ShotQ").font(.headline)
                 Text(statusText)
                     .font(.caption)
                     .foregroundStyle(.secondary)

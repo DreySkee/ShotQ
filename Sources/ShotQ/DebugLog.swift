@@ -1,10 +1,10 @@
 import Foundation
 
-/// Appends diagnostics to ~/Library/Logs/ShotQueue.log — the unified
+/// Appends diagnostics to ~/Library/Logs/ShotQ.log — the unified
 /// log redacts our messages, so a plain file is the reliable channel.
 enum DebugLog {
     static let url = FileManager.default.homeDirectoryForCurrentUser
-        .appendingPathComponent("Library/Logs/ShotQueue.log")
+        .appendingPathComponent("Library/Logs/ShotQ.log")
 
     private static let timestampFormatter: DateFormatter = {
         let formatter = DateFormatter()

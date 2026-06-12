@@ -17,13 +17,13 @@ struct Capture: Identifiable, Equatable {
     var filename: String { url.lastPathComponent }
 }
 
-/// Persists captures as PNG files under ~/Pictures/ShotQueue/YYYY/MM/.
+/// Persists captures as PNG files under ~/Pictures/ShotQ/YYYY/MM/.
 /// Heavy work (TIFF→PNG conversion, hashing, disk writes) runs on a serial
 /// background queue; completions are delivered on the main queue.
 final class VaultStore {
     let baseURL: URL
 
-    private let queue = DispatchQueue(label: "dev.andrey.ShotQueue.store", qos: .utility)
+    private let queue = DispatchQueue(label: "dev.andrey.ShotQ.store", qos: .utility)
     private var recentHashes: [String] = []
     private let maxRememberedHashes = 64
 
@@ -44,7 +44,7 @@ final class VaultStore {
     init() {
         let pictures = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask).first
             ?? FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Pictures")
-        baseURL = pictures.appendingPathComponent("ShotQueue", isDirectory: true)
+        baseURL = pictures.appendingPathComponent("ShotQ", isDirectory: true)
     }
 
     /// Completion receives nil for duplicates and failures; runs on main queue.
@@ -85,7 +85,7 @@ final class VaultStore {
             try pngData.write(to: url, options: .atomic)
             return Capture(url: url, date: now, hash: hash)
         } catch {
-            NSLog("ShotQueue: failed to save capture: \(error.localizedDescription)")
+            NSLog("ShotQ: failed to save capture: \(error.localizedDescription)")
             return nil
         }
     }

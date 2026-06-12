@@ -1,14 +1,14 @@
 #!/bin/zsh
-# Builds ShotQueue.app into ./build and ad-hoc signs it.
+# Builds ShotQ.app into ./build and ad-hoc signs it.
 set -euo pipefail
 cd "$(dirname "$0")"
 
 swift build -c release
 
-APP="build/ShotQueue.app"
+APP="build/ShotQ.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp .build/release/ShotQueue "$APP/Contents/MacOS/"
+cp .build/release/ShotQ "$APP/Contents/MacOS/"
 cp Resources/Info.plist "$APP/Contents/"
 cp Resources/AppIcon.icns "$APP/Contents/Resources/"
 IDENTITY="ScreenshotVault Dev Signing"
@@ -21,4 +21,4 @@ else
 fi
 
 echo "Built $APP"
-echo "Install: ditto $APP ~/Applications/ShotQueue.app && open ~/Applications/ShotQueue.app"
+echo "Install: ditto $APP ~/Applications/ShotQ.app && open ~/Applications/ShotQ.app"

@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleExecutable</key>
-    <string>ShotQueue</string>
+    <string>ShotQ</string>
     <key>CFBundleIdentifier</key>
-    <string>dev.andrey.ShotQueue</string>
+    <string>dev.andrey.ShotQ</string>
     <key>CFBundleName</key>
-    <string>ShotQueue</string>
+    <string>ShotQ</string>
     <key>CFBundleDisplayName</key>
-    <string>ShotQueue</string>
+    <string>ShotQ</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleIconFile</key>

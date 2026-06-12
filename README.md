@@ -1,20 +1,20 @@
-# ShotQueue
+# ShotQ
 
 Menu bar app that archives every clipboard screenshot you take with the native
 macOS shortcuts **⌃⇧⌘4** (selection → clipboard) and **⌃⇧⌘3** (full screen →
 clipboard). Normally each new capture overwrites the previous one on the
-clipboard; ShotQueue saves every capture to disk before that happens.
+clipboard; ShotQ saves every capture to disk before that happens.
 
 ## How it works
 
-macOS itself takes the screenshot and puts it on the clipboard. ShotQueue
+macOS itself takes the screenshot and puts it on the clipboard. ShotQ
 polls `NSPasteboard.general.changeCount` (every 0.25 s) and, when new bare image
 data appears — image flavors only, no file URL / HTML / text flavors, which is
 the signature of a screenshot as opposed to an image copied from an app — it
 writes a PNG to the vault:
 
 ```
-~/Pictures/ShotQueue/YYYY/MM/Screenshot 2026-06-12 at 14.03.22.png
+~/Pictures/ShotQ/YYYY/MM/Screenshot 2026-06-12 at 14.03.22.png
 ```
 
 Consecutive duplicates are skipped via SHA-256. Password-manager clipboard
@@ -46,7 +46,7 @@ swapped.
 - With an empty batch, or in any non-terminal app, Ctrl+V is passed through
   untouched.
 - Paste pacing is configurable:
-  `defaults write dev.andrey.ShotQueue pasteDelaySeconds -float 0.6`
+  `defaults write dev.andrey.ShotQ pasteDelaySeconds -float 0.6`
 
 ## Menu bar UI
 
@@ -62,11 +62,11 @@ swapped.
 
 ## Signing & diagnostics
 
-`build.sh` signs with the self-signed "ShotQueue Dev Signing" keychain
+`build.sh` signs with the self-signed "ShotQ Dev Signing" keychain
 identity when available (falls back to ad-hoc). The stable identity keeps the
 app's TCC grants (Accessibility) valid across rebuilds.
 
-Diagnostics append to `~/Library/Logs/ShotQueue.log`: every clipboard
+Diagnostics append to `~/Library/Logs/ShotQ.log`: every clipboard
 change with its pasteboard flavors and verdict, tap install status, every
 Ctrl+V decision, saves, erases, deletes.
 
@@ -74,8 +74,8 @@ Ctrl+V decision, saves, erases, deletes.
 
 ```sh
 ./build.sh
-ditto build/ShotQueue.app ~/Applications/ShotQueue.app
-open ~/Applications/ShotQueue.app
+ditto build/ShotQ.app ~/Applications/ShotQ.app
+open ~/Applications/ShotQ.app
 ```
 
 Requires macOS 13+ and Xcode command line tools. The app is ad-hoc signed for

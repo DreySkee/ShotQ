@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "ShotQueue",
+    name: "ShotQ",
     platforms: [.macOS(.v13)],
     targets: [
         .executableTarget(
-            name: "ShotQueue",
-            path: "Sources/ShotQueue"
+            name: "ShotQ",
+            path: "Sources/ShotQ"
         )
     ]
 )

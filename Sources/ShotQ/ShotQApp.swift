@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct ShotQueueApp: App {
+struct ShotQApp: App {
     @StateObject private var watcher = ClipboardWatcher(store: VaultStore())
 
     init() {
@@ -21,7 +21,7 @@ struct ShotQueueApp: App {
     }
 
     var body: some Scene {
-        MenuBarExtra("ShotQueue", systemImage: "camera.viewfinder") {
+        MenuBarExtra("ShotQ", systemImage: "camera.viewfinder") {
             VaultMenuView()
                 .environmentObject(watcher)
         }

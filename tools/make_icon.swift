@@ -1,4 +1,4 @@
-// Renders the ShotQueue app icon: a queue of screenshot cards with viewfinder
+// Renders the ShotQ app icon: a queue of screenshot cards with viewfinder
 // brackets on an indigo gradient squircle.
 // Usage: swift tools/make_icon.swift <output.png>
 import AppKit
