@@ -5,6 +5,26 @@ macOS shortcuts **⌃⇧⌘4** (selection → clipboard) and **⌃⇧⌘3** (ful
 clipboard). Normally each new capture overwrites the previous one on the
 clipboard; ShotQ saves every capture to disk before that happens.
 
+## Install
+
+Download the latest `ShotQ-x.y.z.dmg` from
+[Releases](https://github.com/DreySkee/ShotQ/releases), open it, drag
+**ShotQ** to **Applications**, then launch it.
+
+The app is self-signed (not notarized), so Gatekeeper warns on first launch
+of a downloaded copy:
+
+1. If "ShotQ can't be opened" appears, go to System Settings → Privacy &
+   Security, scroll down, and click **Open Anyway** (on older macOS,
+   right-click the app → Open → Open also works).
+2. Grant **Accessibility** when prompted (needed for batch paste on
+   Ctrl+V/Cmd+V) — System Settings → Privacy & Security → Accessibility →
+   enable ShotQ.
+3. Allow access to the **Pictures** folder when the first screenshot is saved.
+
+ShotQ registers itself as a login item on first launch, so it survives
+reboots until you quit it from the menu.
+
 ## How it works
 
 macOS itself takes the screenshot and puts it on the clipboard. ShotQ
@@ -39,8 +59,7 @@ swapped.
 
 - Requires the **Accessibility** permission (System Settings → Privacy &
   Security → Accessibility). The menu shows a warning with an Open Settings
-  button until granted. After rebuilding the app you may need to remove and
-  re-add it in that list (the ad-hoc code signature changes).
+  button until granted.
 - **Erase screenshots after paste** (default on): pasted captures are moved to
   the Trash and removed from the list once the batch has been delivered.
 - With an empty batch, or in any non-terminal app, Ctrl+V is passed through
@@ -62,15 +81,15 @@ swapped.
 
 ## Signing & diagnostics
 
-`build.sh` signs with the self-signed "ShotQ Dev Signing" keychain
-identity when available (falls back to ad-hoc). The stable identity keeps the
-app's TCC grants (Accessibility) valid across rebuilds.
+`build.sh` signs with a self-signed keychain identity when available (falls
+back to ad-hoc). The stable identity keeps the app's TCC grants
+(Accessibility) valid across rebuilds; ad-hoc signing resets them each build.
 
 Diagnostics append to `~/Library/Logs/ShotQ.log`: every clipboard
 change with its pasteboard flavors and verdict, tap install status, every
 Ctrl+V decision, saves, erases, deletes.
 
-## Build & install
+## Build from source
 
 ```sh
 ./build.sh
@@ -78,8 +97,8 @@ ditto build/ShotQ.app ~/Applications/ShotQ.app
 open ~/Applications/ShotQ.app
 ```
 
-Requires macOS 13+ and Xcode command line tools. The app is ad-hoc signed for
-local use; notarize before distributing.
+Requires macOS 13+ and Xcode command line tools.
+`tools/make_dmg.sh` builds the distributable DMG into `dist/`.
 
 ## Behavior notes
 
